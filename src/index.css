@@ -1,13 +1,396 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body,
+html {
+  font-family: 'Open Sans', serif;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* navbar */
+.navbox {
+  position: relative;
+  height: 80px;
+}
+
+.navbox.active {
+  height: 320px;
+}
+
+.navbox .leftside {
+  font-family: 'Tangerine', serif;
+  font-size: 24px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-weight: 600;
+}
+
+.navbox .rightside {
+  display: none;
+}
+
+@media(max-width: 768px) {
+  .navbox.active .rightside.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: absolute;
+    top: 70px;
+    left: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .navbox.active .rightside.active .links {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .navbox.active .rightside.active .links .Link {
+    color: #000;
+  }
+
+  .navbox .toggle-icon {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+  }
+
+  .navbox.active .toggle-icon.active {
+    top: 20px;
+    border: 1px solid #000;
+    padding: 5px;
+    border-radius: 2px;
+  }
+
+}
+
+/* hero-box */
+.hero-box {
+  height: 550px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  background-color: #5e5e61;
+  padding: 20px;
+}
+
+.hero-box .leftside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-box .leftside .name {
+  font-family: 'Roboto Slab', serif;
+  font-size: 36px;
+  color: #fff;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.hero-box .leftside .name .yellow {
+  color: #ffcd57;
+  margin-left: 25px;
+}
+
+.hero-box .leftside .hero-text {
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+  background-color: #ffcd57;
+  padding: 7px;
+  letter-spacing: 0.1em;
+  margin-left: 5px;
+}
+
+.hero-box .leftside .icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: #fff;
+  margin-left: 0px;
+}
+
+.hero-box .leftside .icons span {
+  font-size: 36px;
+  padding: 5px;
+  margin: 2px;
+}
+
+.hero-box .hero-icon {
+  color: #fff;
+}
+
+/* skills */
+.skills-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.skills-box .skills-leftside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.skills-box .skills-leftside h3 {
+  font-weight: 600;
+  text-align: center;
+}
+
+.skills-box .skills-leftside h6 {
+  font-weight: 500;
+  color: #5e5e61;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* rightside */
+.skills-box .skills-rightside {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.skills-box .skills-rightside .progress-bar {
+  width: 100%;
+  height: 30px;
+  background: #e4e4e4;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+}
+
+.skills-box .skills-rightside .progress-bar .name {
+  width: 20%;
+  background-color: #ffcd57;
+  color: #000;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+.skills-box .skills-rightside .progress-bar .portion {
+  width: 79%;
+  height: 100%;
+  background: #d19f29;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+.skills-box .skills-rightside .progress-bar .percentage-span {
+  display: none;
+}
+
+@media(min-width: 769px) {
+
+  /* navbar */
+  .navbox .toggle-icon {
+    display: none;
+  }
+
+  .navbox .rightside {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .navbox .rightside .links,
+  .navbox.active .rightside.active .links {
+    margin: 10px;
+    padding: 5px;
+  }
+
+  .navbox .rightside .links .Link,
+  .navbox.active .rightside.active .links .Link {
+    color: #000 !important;
+  }
+
+  .navbox.active {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbox.active .leftside,
+  .navbox .leftside {
+    top: 25px;
+  }
+
+  /* hero-box */
+  .hero-box {
+    height: 550px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('./images/bg1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position: center center;
+    /* background-color: #0170ad; */
+    background-color: #5e5e61;
+    padding: 20px;
+    background-blend-mode: overlay;
+  }
+
+  .hero-box .leftside {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .hero-box .leftside .name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 70px;
+    color: #fff;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .hero-box .leftside .name .yellow {
+    color: #ffcd57;
+    margin-left: 25px;
+  }
+
+  .hero-box .leftside .hero-text {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 7px;
+    letter-spacing: 0.1em;
+    margin-left: 5px;
+  }
+
+  .hero-box .leftside .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: #fff;
+    margin-left: 0px;
+  }
+
+  .hero-box .leftside .icons span {
+    font-size: 36px;
+    padding: 5px;
+    margin: 2px;
+  }
+
+  .hero-box .hero-icon {
+    color: #fff;
+  }
+
+  /* skills */
+  .skills-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .skills-box .skills-leftside {
+    width: 30%;
+    margin-right: 10%;
+    padding: 30px;
+  }
+
+  .skills-box .skills-rightside {
+    width: 50%;
+    margin-left: 10%;
+    padding: 30px;
+  }
+
+  @media(min-width: 1500px) {
+    .skills-box {
+      justify-content: space-between;
+    }
+
+    .skills-box .skills-leftside {
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    .skills-box .skills-leftside h6 {
+      text-align: left;
+    }
+
+    .skills-box .skills-rightside {
+      margin-right: 0;
+      padding-right: 0;
+    }
+  }
+
+  .skills-box .skills-rightside .progress-bar .percentage-span {
+    color: #000;
+    font-size: 10px;
+    font-weight: 600;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 5px;
+    top: 0px;
+  }
+
+}
+
+@media(max-width: 768px) {
+  .login-btn {
+    width: 100%;
+  }
+}
+
+.error{
+  color: red;
+  font-size: 12px;
 }
