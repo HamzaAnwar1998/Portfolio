@@ -21,7 +21,8 @@ const Navbar = () => {
             <div className='rightside' id='rightside'>
                 <div className='links'><Link className='Link' to='/'>HOME</Link></div>
                 <div className='links'><Link className='Link' to='/projects'>PROJECTS</Link></div>
-                <div className='links'><Link className='Link' to='/blog'>BLOG</Link></div>
+                <div className='links'><Link className='Link' to='/blogs'>BLOGS</Link></div>
+                <div className='links'><Link className='Link' to='/youtubevideos'>YOUTUBE</Link></div>
                 <div className='links'><Link className='Link' to='/contact'>CONTACT</Link></div>
                 <div className='links'><Link className='Link' to='/login'>LOGIN</Link></div>
             </div>

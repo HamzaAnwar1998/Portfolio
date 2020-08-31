@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const AddProjects = ({ addProjectOnHome }) => {
+export const AddProjects = ({ addProjectsOnHome }) => {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -27,7 +27,7 @@ export const AddProjects = ({ addProjectOnHome }) => {
     // submit handler on home
     const handleSubmitOnHome = (e) => {
         e.preventDefault();
-        addProjectOnHome(title, description, category, link, file);
+        addProjectsOnHome(title, description, category, link, file);
         setTitle('');
         setDescription('');
         setCategory('');

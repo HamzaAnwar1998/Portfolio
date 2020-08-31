@@ -1,0 +1,77 @@
+.red-container {
+    width: 100%;
+    height: auto;
+    background-color: #e24033;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 70px;
+}
+
+.red-container h2 {
+    color: #fff;
+}
+
+.red-container .youtube-container {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.red-container .youtube-container .cards {
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    margin: 1.55%
+}
+
+@media(max-width: 768px) {
+    .red-container h2 {
+        font-size: 16px;
+    }
+
+    .red-container .youtube-container {
+        width: 100%;
+    }
+
+    .red-container .youtube-container .cards {
+        width: 100%;
+        margin: 20px;
+    }
+}
+
+.red-container .youtube-container .cards .img-box {
+    width: 100%;
+    height: 50%;
+    padding: 2px;
+}
+
+.red-container .youtube-container .cards .img-box img {
+    width: 100%;
+    height: 100%;
+}
+
+.red-container .youtube-container .cards .title {
+    font-size: 14px;
+    padding: 20px;
+    font-weight: 600;
+}
+
+.red-container .link {
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.red-container .link span {
+    margin-left: 3px;
+}

@@ -1,23 +1,50 @@
 import React from 'react'
-import Navbar from './Navbar'
 import { Hero } from './Hero'
 import { Skills } from './Skills'
 import { ProjectsInHome } from './ProjectsInHome'
-// import { Modal } from './Modal'
+import { Modal } from './Modal'
+import '../css/Projects.css'
+import { Youtube } from './Youtube'
+import { Link } from 'react-router-dom'
 
 class Home extends React.Component {
+
+    state = {
+        selectedImg: null
+    }
+
+    // set selected Image
+    setSelectedImg = (img) => {
+        this.setState({
+            selectedImg: img
+        })
+    }
+
     render() {
-        // console.log(this.props.projects);
         return (
             <div className='wrapper'>
-                <Navbar />
                 <Hero />
                 <br />
                 <Skills />
                 <br /><br />
-                <ProjectsInHome projects={this.props.projects}/>
+                {/* projects */}
+                {this.props.projects && <div className='container-fluid'>
+                    <h2>PROJECTS</h2>
+                    <br />
+                    <div className='projects-box'>
+                        <ProjectsInHome projects={this.props.projects} setSelectedImg={this.setSelectedImg} />
+                        <div className='viewmore-div'>
+                            <Link to='/projects' className='link'>View More
+                            <span><i className="fas fa-angle-double-right"></i></span>
+                            </Link>
+                        </div>
+                    </div>
+                </div>}
                 <br />
-                {/* <Modal /> */}
+                {this.state.selectedImg && <Modal selectedImg={this.state.selectedImg}
+                    setSelectedImg={this.setSelectedImg} />}
+                {/* youtube */}
+                <Youtube />
             </div>
         )
     }
