@@ -1,11 +1,12 @@
 import React from 'react'
 import { Hero } from './Hero'
 import { Skills } from './Skills'
-import { ProjectsInHome } from './ProjectsInHome'
-import { Modal } from './Modal'
+import { Projects } from './Projects'
 import '../css/Projects.css'
-import { Youtube } from './Youtube'
-import { Link } from 'react-router-dom'
+import { Modal } from './Modal'
+import { YoutubeVideos } from './YoutubeVideos'
+import '../css/Youtube.css'
+import { Footer } from './Footer'
 
 class Home extends React.Component {
 
@@ -29,22 +30,27 @@ class Home extends React.Component {
                 <br /><br />
                 {/* projects */}
                 {this.props.projects && <div className='container-fluid'>
-                    <h2>PROJECTS</h2>
-                    <br />
+                    <h2 className='projects-heading'>PROJECTS</h2>
+                    <br /><br />
                     <div className='projects-box'>
-                        <ProjectsInHome projects={this.props.projects} setSelectedImg={this.setSelectedImg} />
-                        <div className='viewmore-div'>
-                            <Link to='/projects' className='link'>View More
-                            <span><i className="fas fa-angle-double-right"></i></span>
-                            </Link>
-                        </div>
+                        <Projects projects={this.props.projects} setSelectedImg={this.setSelectedImg} />
                     </div>
                 </div>}
-                <br />
+                <br /><br />
+                {/* Modal */}
                 {this.state.selectedImg && <Modal selectedImg={this.state.selectedImg}
                     setSelectedImg={this.setSelectedImg} />}
                 {/* youtube */}
-                <Youtube />
+                {this.props.videos && <div className='red-container'>
+                    <br /><br />
+                    <h2 className='youtube-heading'>YOUTUBE VIDEOS</h2>
+                    <br /><br />
+                    <div className='youtube-container'>
+                        <YoutubeVideos videos={this.props.videos} />
+                    </div>
+                </div>}
+                {/* footer */}
+                <Footer />
             </div>
         )
     }

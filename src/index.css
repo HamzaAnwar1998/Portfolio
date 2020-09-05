@@ -23,7 +23,7 @@ html {
 }
 
 .navbox.active {
-  height: 320px;
+  height: 250px;
 }
 
 .navbox .leftside {
@@ -104,6 +104,12 @@ html {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+}
+
+@media(max-width: 450px) {
+  .hero-box .leftside .name {
+    font-size: 30px;
+  }
 }
 
 .hero-box .leftside .name .yellow {
@@ -410,4 +416,14 @@ html {
   margin: 60px auto;
   box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
   border: 3px solid white;
+}
+
+.youtube-heading {
+  color: #fff;
+  font-weight: 600;
+}
+
+.projects-heading {
+  font-weight: 600;
+  text-align: center;
 }

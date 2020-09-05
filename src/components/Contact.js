@@ -1,17 +1,26 @@
 import React, { useState } from 'react'
 
-export const Contact = () => {
+export const Contact = ({ addMessages }) => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [msg, setMsg] = useState('');
+
+    // handle contact submit
+    const handleContactSubmit = (e) => {
+        e.preventDefault();
+        addMessages(name, email, msg);
+        setName('');
+        setEmail('');
+        setMsg('');
+    }
 
     return (
         <div className='container'>
             <br />
             <h3>Contact</h3>
             <hr />
-            <form autoComplete="off" className='form-control'>
+            <form autoComplete="off" className='form-control' onSubmit={handleContactSubmit}>
                 <label htmlFor="name">Name</label>
                 <input type="text" className='form-control' required
                     onChange={(e) => setName(e.target.value)} value={name} />

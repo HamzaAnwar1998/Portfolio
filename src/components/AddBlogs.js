@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Blogs = () => {
+export const AddBlogs = () => {
     return (
         <div className='container-fluid'>
-            coming soon!
+            Add blogs form will come up here
         </div>
     )
 }

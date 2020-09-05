@@ -1,21 +1,12 @@
-h2 {
-    font-weight: 600;
-    width: 100%;
-    padding: 20px;
-    text-align: center;
-}
-
 .projects-box {
-    width: 90%;
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     overflow: hidden;
-    margin-left: 5%;
-    margin-right: 5%;
 }
 
 @media(max-width: 768px) {
@@ -27,8 +18,8 @@ h2 {
 }
 
 .projects-box .project-card {
-    width: 31.3%;
-    height: auto;
+    width: 350px;
+    height: 250px;
     border: 1px solid #e4e4e4;
     display: flex;
     flex-direction: row-reverse;
@@ -40,8 +31,8 @@ h2 {
 }
 
 .projects-box .viewmore-div {
-    width: 31.3%;
-    height: 300px;
+    width: auto;
+    height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +43,7 @@ h2 {
 .projects-box .viewmore-div .link {
     color: #5e5e61;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .projects-box .viewmore-div .link span {
@@ -70,7 +61,7 @@ h2 {
 }
 
 .projects-box .project-card .details-box {
-    width: 55%;
+    width: 140px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -79,19 +70,19 @@ h2 {
 
 .projects-box .project-card .details-box h3 {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .projects-box .project-card .details-box h6 {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 12px;
     color: #5e5e61;
     word-wrap: break-word;
 }
 
 .projects-box .project-card .img-box {
-    width: 35%;
-    height: 300px;
+    width: 80px;
+    height: 200px;
     background: #e4e4e4;
     display: flex;
     justify-content: center;
@@ -100,32 +91,6 @@ h2 {
     cursor: pointer;
 }
 
-@media(min-width: 1500px) {
-
-    .projects-box .project-card .img-box,
-    .projects-box .viewmore-div {
-        height: 400px;
-    }
-}
-
-@media(min-width: 1800px) {
-
-    .projects-box .project-card .img-box,
-    .projects-box .viewmore-div {
-        height: 550px;
-    }
-
-    .projects-box .project-card .details-box h3 {
-        font-size: 24px;
-    }
-
-    .projects-box .project-card .details-box h6 {
-        font-size: 22px;
-    }
-
-}
-
 .projects-box .project-card .img-box img {
     width: 100%;
-    height: 100%;
 }

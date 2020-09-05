@@ -1,22 +1,28 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
-import { Login } from './components/Login'
-import { AddProjects } from './components/AddProjects'
 import Home from './components/Home';
-import { db, storage } from './config/Config'
 import Navbar from './components/Navbar';
 import { Blogs } from './components/Blogs'
-import { Projects } from './components/Projects'
-import { YoutubeVideos } from './components/YoutubeVideos'
 import { Contact } from './components/Contact';
+import AdminLogin from './components/AdminLogin'
+import { AdminPanel } from './components/AdminPanel'
+import { AddProjects } from './components/AddProjects'
+import { AddYoutubeVideos } from './components/AddYoutubeVideos';
+import {AddBlogs} from './components/AddBlogs'
+import { db, storage } from './config/Config'
 
 class App extends React.Component {
 
   state = {
-    projects: []
+    projects: [],
+    contactMessages: [],
+    selectedImg: null,
+    youtubeVideos: []
   }
 
   componentDidMount() {
+
+    // retriving projects
     const prevState = this.state.projects;
     db.collection('ProjectInHome').onSnapshot(snapshot => {
       let changes = snapshot.docChanges();
@@ -37,9 +43,48 @@ class App extends React.Component {
         })
       })
     })
+
+    // retriving messages to its state
+    const prevStateContactMsgs = this.state.contactMessages;
+    db.collection('ContactMessages').onSnapshot(snapshot => {
+      let changes = snapshot.docChanges();
+      changes.forEach(change => {
+        if (change.type === 'added') {
+          prevStateContactMsgs.push({
+            ID: change.doc.id,
+            Name: change.doc.data().Name,
+            Email: change.doc.data().Email,
+            Message: change.doc.data().Message
+          })
+        }
+        this.setState({
+          contactMessages: prevStateContactMsgs
+        })
+      })
+    })
+
+    // retriving youtube information to its state
+    const prevState3 = this.state.youtubeVideos;
+    db.collection('YoutubeVideos').onSnapshot(snapshot => {
+      let changes = snapshot.docChanges();
+      changes.forEach(change => {
+        if (change.type === 'added') {
+          prevState3.push({
+            ID_OF_VIDEO: change.doc.id,
+            Title: change.doc.data().Title,
+            Link: change.doc.data().Link,
+            Image: change.doc.data().ThumbnailImage
+          })
+        }
+        this.setState({
+          youtubeVideos: prevState3
+        })
+      })
+    })
+
   }
 
-  // add projects on home
+  // add projects
   addProjectsOnHome = (title, description, category, link, file) => {
     const uploadTask = storage.ref(`images/${file.name}`).put(file);
     uploadTask.on('state_changed', snapshot => {
@@ -60,18 +105,58 @@ class App extends React.Component {
     })
   }
 
+  // addMessages
+  addMessages = (name, email, msg) => {
+    // console.log(name, email, msg);
+    db.collection('ContactMessages').add({
+      Name: name,
+      Email: email,
+      Message: msg
+    })
+  }
+
+  // setting selected img for modal
+  setSelectedImg = (img) => {
+    // console.log(img);
+    this.setState({
+      selectedImg: img
+    })
+  }
+
+  // addVideosOfYoutube
+  addVideosOfYoutube = (title, link, file) => {
+    // console.log(title, link, file);
+    const uploadTask = storage.ref(`thumbnailImages/${file.name}`).put(file);
+    uploadTask.on('state_changed', snapshot => {
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log(progress);
+    }, err => {
+      console.log(err.message)
+    }, () => {
+      storage.ref('thumbnailImages').child(file.name).getDownloadURL().then(url => {
+        db.collection('YoutubeVideos').add({
+          Title: title,
+          Link: link,
+          ThumbnailImage: url
+        })
+      })
+    })
+  }
+
   render() {
     return (
       <BrowserRouter>
         <Navbar />
-        <Route exact path='/' component={() => <Home projects={this.state.projects} />} />
-        <Route path='/login' component={Login} />
-        <Route path='/addprojects' component={() => <AddProjects addProjectsOnHome={this.addProjectsOnHome} />} />
+        <Route exact path='/' component={() => <Home projects={this.state.projects}
+          videos={this.state.youtubeVideos} />} />
         <Route path='/blogs' component={Blogs} />
-        <Route path='/projects' component={Projects} />
-        <Route path='/youtubevideos' component={YoutubeVideos} />
-        <Route path='/contact' component={Contact} />
-      </BrowserRouter >
+        <Route path='/contact' component={() => <Contact addMessages={this.addMessages} />} />
+        <Route path='/admin-login' component={AdminLogin} />
+        <Route path='/adminpanel' component={() => <AdminPanel contactMessages={this.state.contactMessages} />} />
+        <Route path='/addprojects' component={() => <AddProjects addProjectsOnHome={this.addProjectsOnHome} />} />
+        <Route path='/addyoutubevideos' component={() => (<AddYoutubeVideos addVideosOfYoutube={this.addVideosOfYoutube} />)} />
+        <Route path='/addblogs' component={AddBlogs} />
+      </BrowserRouter>
     );
   }
 }

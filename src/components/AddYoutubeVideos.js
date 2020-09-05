@@ -1,14 +1,10 @@
-import React, { useState } from 'react'
-import { Sidebar } from './Sidebar';
+import React, { useState, useEffect } from 'react'
 import '../css/Admin.css'
-import { useEffect } from 'react';
+import { Sidebar } from './Sidebar'
 import { auth } from '../config/Config'
 
-export const AddProjects = ({ addProjectsOnHome }) => {
-
+export const AddYoutubeVideos = ({ addVideosOfYoutube }) => {
     const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('');
     const [link, setLink] = useState('');
     const [file, setFile] = useState(null);
 
@@ -30,7 +26,7 @@ export const AddProjects = ({ addProjectsOnHome }) => {
     })
 
     // image handler on home
-    const imageHandlerOnHome = (e) => {
+    const imageHandlerOfYoutube = (e) => {
         let selectedFiles = e.target.files[0];
         if (selectedFiles && types.includes(selectedFiles.type)) {
             setFile(selectedFiles);
@@ -43,16 +39,13 @@ export const AddProjects = ({ addProjectsOnHome }) => {
     }
 
     // submit handler on home
-    const handleSubmitOnHome = (e) => {
+    const handleSubmitOfYoutube = (e) => {
         e.preventDefault();
-        addProjectsOnHome(title, description, category, link, file);
+        addVideosOfYoutube(title, link, file);
         setTitle('');
-        setDescription('');
-        setCategory('');
         setLink('');
         document.getElementById('file').value = '';
     }
-
     switch (isLoggedIn) {
         case true:
             return (
@@ -62,27 +55,19 @@ export const AddProjects = ({ addProjectsOnHome }) => {
                         </div>
                         <div className='rightside'>
                             <div className='container'>
-                                <h1 className='heading'>ADD PROJECTS</h1>
+                                <h1 className='heading'>ADD YOUTUBE VIDEOS</h1>
                                 <hr />
-                                <form autoComplete="off" className='form-group' onSubmit={handleSubmitOnHome}>
+                                <form autoComplete="off" className='form-group' onSubmit={handleSubmitOfYoutube}>
                                     <label htmlFor="title">Title</label>
                                     <input type="text" className='form-control' required
                                         onChange={(e) => setTitle(e.target.value)} value={title} />
-                                    <br />
-                                    <label htmlFor="description">Description</label>
-                                    <input type="text" className='form-control' required
-                                        onChange={(e) => setDescription(e.target.value)} value={description} />
-                                    <br />
-                                    <label htmlFor="category">Category</label>
-                                    <input type="text" className='form-control' required
-                                        onChange={(e) => setCategory(e.target.value)} value={category} />
                                     <br />
                                     <label htmlFor="link">Link</label>
                                     <input type="text" className='form-control' required
                                         onChange={(e) => setLink(e.target.value)} value={link} />
                                     <br />
                                     <input type="file" className='form-control' required
-                                        onChange={imageHandlerOnHome} id='file' />
+                                        onChange={imageHandlerOfYoutube} id='file' />
                                     <br />
                                     <input type="submit" className='btn btn-success btn-md login-btn' />
                                 </form>
